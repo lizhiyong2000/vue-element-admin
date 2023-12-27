@@ -31,6 +31,9 @@ export default defineConfig({
         transformMixedEsModules: true, // 轉換兼容 commonjs
       },
     },
+    optimizeDeps: {
+      exclude: ['driver.js']
+    },
    server: {
     // 支持IP访问
     host: true,
