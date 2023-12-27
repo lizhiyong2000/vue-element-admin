@@ -10,7 +10,7 @@ for (let i = 0; i < count; i++) {
 }
 NameList.push({ name: 'mock-Pan' })
 
-module.exports = [
+export default [
   // username search
   {
     url: '/vue-element-admin/search/user',
@@ -39,7 +39,7 @@ module.exports = [
           total: 20,
           'items|20': [{
             order_no: '@guid()',
-            timestamp: +Mock.Random.date('T'),
+            timestamp: Mock.Random.date('T'),
             username: '@name()',
             price: '@float(1000, 15000, 0, 2)',
             'status|1': ['success', 'pending']

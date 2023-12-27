@@ -23,7 +23,8 @@
     <footer v-show="todos.length" class="footer">
       <span class="todo-count">
         <strong>{{ remaining }}</strong>
-        {{ remaining | pluralize('item') }} left
+        <!-- {{ remaining | pluralize('item') }} left -->
+        {{ remaining }} left
       </span>
       <ul class="filters">
         <li v-for="(val, key) in filters" :key="key">
@@ -58,6 +59,7 @@ const defalutList = [
 ]
 export default {
   components: { Todo },
+
   filters: {
     pluralize: (n, w) => n === 1 ? w : w + 's',
     capitalize: s => s.charAt(0).toUpperCase() + s.slice(1)
@@ -79,7 +81,13 @@ export default {
     },
     remaining() {
       return this.todos.filter(todo => !todo.done).length
-    }
+    },
+    pluralize(){
+      return (n, w) => n === 1 ? w : w + 's'
+    },
+    capitalize(){
+      return s => s.charAt(0).toUpperCase() + s.slice(1)
+    },
   },
   methods: {
     setLocalStorage() {

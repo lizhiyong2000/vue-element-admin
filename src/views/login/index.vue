@@ -76,10 +76,21 @@
 <script>
 import { validUsername } from '@/utils/validate'
 import SocialSign from './components/SocialSignin'
+import { useRouter } from 'vue-router'
+
 
 export default {
   name: 'Login',
-  components: { SocialSign },
+  components: { SocialSign }, 
+  setup() {
+   const router = useRouter()  
+  //  console.log(`router in setup:${router}`);
+    return {
+       router
+    }
+
+  },
+
   data() {
     const validateUsername = (rule, value, callback) => {
       if (!validUsername(value)) {
@@ -158,10 +169,14 @@ export default {
           this.loading = true
           this.$store.dispatch('user/login', this.loginForm)
             .then(() => {
-              this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
+              console.log('success login %0!! ,path:${this.redirect}, query:%0', this.router.hasRoute('Dashboard'), this.redirect, this.router.getRoutes())
+              // this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
+              
+              this.router.replace('/dashboard')
               this.loading = false
             })
-            .catch(() => {
+            .catch((err) => {
+              console.log('error login:%0', err)
               this.loading = false
             })
         } else {

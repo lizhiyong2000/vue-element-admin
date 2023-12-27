@@ -1,6 +1,6 @@
 const { notEmpty } = require('../utils.js')
 
-module.exports = {
+export default {
   description: 'generate store',
   prompts: [{
     type: 'input',

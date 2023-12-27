@@ -1,6 +1,6 @@
 const { notEmpty } = require('../utils.js')
 
-module.exports = {
+export default {
   description: 'generate vue component',
   prompts: [{
     type: 'input',

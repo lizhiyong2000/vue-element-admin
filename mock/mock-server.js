@@ -43,7 +43,7 @@ const responseFake = (url, type, respond) => {
   }
 }
 
-module.exports = app => {
+export default app => {
   // parse app.body
   // https://expressjs.com/en/4x/api.html#req.body
   app.use(bodyParser.json())

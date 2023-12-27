@@ -18,7 +18,7 @@ export default {
     return {
       sizeOptions: [
         { label: 'Default', value: 'default' },
-        { label: 'Medium', value: 'medium' },
+        // { label: 'Medium', value: 'medium' },
         { label: 'Small', value: 'small' },
         { label: 'Mini', value: 'mini' }
       ]

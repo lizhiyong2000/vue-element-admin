@@ -1,6 +1,6 @@
-const { run } = require('runjs')
-const chalk = require('chalk')
-const config = require('../vue.config.js')
+import { run }  from 'runjs'
+import * as  chalk from 'chalk'
+import * as config from '../vue.config.js'
 const rawArgv = process.argv.slice(2)
 const args = rawArgv.join(' ')
 

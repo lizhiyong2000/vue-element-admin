@@ -1,7 +1,7 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import * as Vue from 'vue'
 
-Vue.use(Router)
+import {createRouter, createWebHistory}  from 'vue-router'
+// Vue.use(Router)
 
 /* Layout */
 import Layout from '@/layout'
@@ -41,6 +41,7 @@ import nestedRouter from './modules/nested'
 export const constantRoutes = [
   {
     path: '/redirect',
+    name: 'Redirect',
     component: Layout,
     hidden: true,
     children: [
@@ -52,26 +53,31 @@ export const constantRoutes = [
   },
   {
     path: '/login',
+    name: 'Login',
     component: () => import('@/views/login/index'),
     hidden: true
   },
   {
     path: '/auth-redirect',
+    name: 'AuthRedirect',
     component: () => import('@/views/login/auth-redirect'),
     hidden: true
   },
   {
     path: '/404',
+    name: 'NotFound',
     component: () => import('@/views/error-page/404'),
     hidden: true
   },
   {
     path: '/401',
+    name: 'Forbidden',
     component: () => import('@/views/error-page/401'),
     hidden: true
   },
   {
     path: '/',
+    name: 'Home',
     component: Layout,
     redirect: '/dashboard',
     children: [
@@ -142,7 +148,7 @@ export const asyncRoutes = [
     },
     children: [
       {
-        path: 'page',
+        path: '/permission/page',
         component: () => import('@/views/permission/page'),
         name: 'PagePermission',
         meta: {
@@ -151,7 +157,7 @@ export const asyncRoutes = [
         }
       },
       {
-        path: 'directive',
+        path: '/permission/directive',
         component: () => import('@/views/permission/directive'),
         name: 'DirectivePermission',
         meta: {
@@ -160,7 +166,7 @@ export const asyncRoutes = [
         }
       },
       {
-        path: 'role',
+        path: '/permission/role',
         component: () => import('@/views/permission/role'),
         name: 'RolePermission',
         meta: {
@@ -201,20 +207,20 @@ export const asyncRoutes = [
     },
     children: [
       {
-        path: 'create',
+        path: '/example/create',
         component: () => import('@/views/example/create'),
         name: 'CreateArticle',
         meta: { title: 'Create Article', icon: 'edit' }
       },
       {
-        path: 'edit/:id(\\d+)',
+        path: '/example/edit/:id(\\d+)',
         component: () => import('@/views/example/edit'),
         name: 'EditArticle',
         meta: { title: 'Edit Article', noCache: true, activeMenu: '/example/list' },
         hidden: true
       },
       {
-        path: 'list',
+        path: '/example/list',
         component: () => import('@/views/example/list'),
         name: 'ArticleList',
         meta: { title: 'Article List', icon: 'list' }
@@ -227,7 +233,7 @@ export const asyncRoutes = [
     component: Layout,
     children: [
       {
-        path: 'index',
+        path: '/tab/index',
         component: () => import('@/views/tab/index'),
         name: 'Tab',
         meta: { title: 'Tab', icon: 'tab' }
@@ -246,13 +252,13 @@ export const asyncRoutes = [
     },
     children: [
       {
-        path: '401',
+        path: '/error/401',
         component: () => import('@/views/error-page/401'),
         name: 'Page401',
         meta: { title: '401', noCache: true }
       },
       {
-        path: '404',
+        path: '/error/404',
         component: () => import('@/views/error-page/404'),
         name: 'Page404',
         meta: { title: '404', noCache: true }
@@ -265,7 +271,7 @@ export const asyncRoutes = [
     component: Layout,
     children: [
       {
-        path: 'log',
+        path: '/error-log/log',
         component: () => import('@/views/error-log/index'),
         name: 'ErrorLog',
         meta: { title: 'Error Log', icon: 'bug' }
@@ -284,25 +290,25 @@ export const asyncRoutes = [
     },
     children: [
       {
-        path: 'export-excel',
+        path: '/excel/export-excel',
         component: () => import('@/views/excel/export-excel'),
         name: 'ExportExcel',
         meta: { title: 'Export Excel' }
       },
       {
-        path: 'export-selected-excel',
+        path: '/excel/export-selected-excel',
         component: () => import('@/views/excel/select-excel'),
         name: 'SelectExcel',
         meta: { title: 'Export Selected' }
       },
       {
-        path: 'export-merge-header',
+        path: '/excel/export-merge-header',
         component: () => import('@/views/excel/merge-header'),
         name: 'MergeHeader',
         meta: { title: 'Merge Header' }
       },
       {
-        path: 'upload-excel',
+        path: '/excel/upload-excel',
         component: () => import('@/views/excel/upload-excel'),
         name: 'UploadExcel',
         meta: { title: 'Upload Excel' }
@@ -319,7 +325,7 @@ export const asyncRoutes = [
     meta: { title: 'Zip', icon: 'zip' },
     children: [
       {
-        path: 'download',
+        path: '/zip/download',
         component: () => import('@/views/zip/index'),
         name: 'ExportZip',
         meta: { title: 'Export Zip' }
@@ -333,7 +339,7 @@ export const asyncRoutes = [
     redirect: '/pdf/index',
     children: [
       {
-        path: 'index',
+        path: '/pdf/index',
         component: () => import('@/views/pdf/index'),
         name: 'PDF',
         meta: { title: 'PDF', icon: 'pdf' }
@@ -351,7 +357,7 @@ export const asyncRoutes = [
     component: Layout,
     children: [
       {
-        path: 'index',
+        path: '/theme/index',
         component: () => import('@/views/theme/index'),
         name: 'Theme',
         meta: { title: 'Theme', icon: 'theme' }
@@ -364,7 +370,7 @@ export const asyncRoutes = [
     component: Layout,
     children: [
       {
-        path: 'index',
+        path: '/clipboard/index',
         component: () => import('@/views/clipboard/index'),
         name: 'ClipboardDemo',
         meta: { title: 'Clipboard', icon: 'clipboard' }
@@ -373,7 +379,7 @@ export const asyncRoutes = [
   },
 
   {
-    path: 'external-link',
+    path: '/external-link',
     component: Layout,
     children: [
       {
@@ -384,20 +390,31 @@ export const asyncRoutes = [
   },
 
   // 404 page must be placed at the end !!!
-  { path: '*', redirect: '/404', hidden: true }
+  { path: "/:catchAll(.*)", redirect: '/404', hidden: true }
 ]
 
-const createRouter = () => new Router({
+// const createRouter = () => new Router({
+//   // mode: 'history', // require service support
+//   scrollBehavior: () => ({ y: 0 }),
+//   routes: constantRoutes
+// })
+
+const router = createRouter({
   // mode: 'history', // require service support
   scrollBehavior: () => ({ y: 0 }),
-  routes: constantRoutes
-})
+  history: createWebHistory(),
 
-const router = createRouter()
+  routes: constantRoutes,
+})
 
 // Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
 export function resetRouter() {
-  const newRouter = createRouter()
+  const newRouter = createRouter({
+    // mode: 'history', // require service support
+    scrollBehavior: () => ({ y: 0 }),
+    history: createWebHistory(),
+    routes: constantRoutes
+  })
   router.matcher = newRouter.matcher // reset router
 }
 

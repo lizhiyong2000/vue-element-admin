@@ -521,10 +521,10 @@ const asyncRoutes = [
     ]
   },
 
-  { path: '*', redirect: '/404', hidden: true }
+  { path: "/:catchAll(.*)", redirect: '/404', hidden: true }
 ]
 
-module.exports = {
+export default {
   constantRoutes,
   asyncRoutes
 }

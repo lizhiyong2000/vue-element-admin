@@ -1,13 +1,15 @@
 module.exports = {
   root: true,
-  parserOptions: {
-    parser: 'babel-eslint',
-    sourceType: 'module'
-  },
   env: {
     browser: true,
     node: true,
-    es6: true,
+    es2022: true,
+  },
+  parserOptions: {
+    ecmaVersion: 12,
+    parser: '@babel/eslint-parser',
+    requireConfigFile: false,
+    sourceType: 'module',
   },
   extends: ['plugin:vue/recommended', 'eslint:recommended'],
 

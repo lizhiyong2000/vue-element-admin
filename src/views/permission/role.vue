@@ -60,7 +60,8 @@
 </template>
 
 <script>
-import path from 'path'
+import path from 'path-browserify'
+
 import { deepClone } from '@/utils'
 import { getRoutes, getRoles, addRole, deleteRole, updateRole } from '@/api/role'
 
@@ -110,6 +111,8 @@ export default {
     // Reshape the routes structure so that it looks the same as the sidebar
     generateRoutes(routes, basePath = '/') {
       const res = []
+
+      console.log('generateRoutes routes:%0', routes)
 
       for (let route of routes) {
         // skip some route
@@ -242,7 +245,7 @@ export default {
       // When there is only one child route, the child route is displayed by default
       if (showingChildren.length === 1) {
         onlyOneChild = showingChildren[0]
-        onlyOneChild.path = path.resolve(parent.path, onlyOneChild.path)
+        onlyOneChild.path = resolve(parent.path, onlyOneChild.path)
         return onlyOneChild
       }
 

@@ -40,6 +40,7 @@
   </div>
 </template>
 
+
 <script>
 import GithubCorner from '@/components/GithubCorner'
 import PanelGroup from './components/PanelGroup'

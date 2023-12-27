@@ -35,7 +35,7 @@ const roles = [
   }
 ]
 
-module.exports = [
+export default [
   // mock get all routes form server
   {
     url: '/vue-element-admin/routes',
