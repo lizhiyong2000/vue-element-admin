@@ -203,7 +203,7 @@ export const asyncRoutes = [
     name: 'Example',
     meta: {
       title: 'Example',
-      icon: 'el-icon-s-help'
+      icon: 'education'
     },
     children: [
       {

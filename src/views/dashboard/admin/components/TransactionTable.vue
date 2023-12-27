@@ -71,7 +71,6 @@ export default {
           pending: 'danger'
         }
 
-        console.log(`statusFilter, origin:${status}`)
         return statusMap[status]
       }
     }

@@ -1,6 +1,6 @@
 <template>
   <div v-if="!item.hidden">
-    <template v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow">
+    <!-- <template v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow">
       <app-link v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
         <el-menu-item :index="resolvePath(onlyOneChild.path)" :class="{'submenu-title-noDropdown':!isNest}">
           <item :icon="onlyOneChild.meta.icon||(item.meta&&item.meta.icon)" :title="onlyOneChild.meta.title" />
@@ -8,8 +8,30 @@
       </app-link>
     </template>
 
+    <el-sub-menu v-else ref="subMenu" :index="resolvePath(item.path)" teleported> -->
+
+
+    <!-- <template v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow">
+      <app-link v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
+        <el-menu-item :index="resolvePath(onlyOneChild.path)" :class="{'submenu-title-noDropdown':!isNest}">
+          <item :icon="onlyOneChild.meta.icon||(item.meta&&item.meta.icon)" :title="onlyOneChild.meta.title" />
+        </el-menu-item>
+      </app-link>
+    </template> -->
+
+    <el-menu-item v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow" :index="resolvePath(onlyOneChild.path)" :class="{'submenu-title-noDropdown':!isNest}">
+      <!-- <template> -->
+        <app-link v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
+          <item :icon="onlyOneChild.meta.icon||(item.meta&&item.meta.icon)" :title="onlyOneChild.meta.title" />
+        </app-link>
+
+      <!-- </template> -->
+    </el-menu-item>
+
     <el-sub-menu v-else ref="subMenu" :index="resolvePath(item.path)" teleported>
-      <template slot="title">
+     
+      <template #title>
+        <!-- <span>  {{ item.path }} </span> -->
         <item v-if="item.meta" :icon="item.meta && item.meta.icon" :title="item.meta.title" />
       </template>
       <sidebar-item
