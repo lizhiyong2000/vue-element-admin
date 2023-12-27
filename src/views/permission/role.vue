@@ -4,22 +4,22 @@
 
     <el-table :data="rolesList" style="width: 100%;margin-top:30px;" border>
       <el-table-column align="center" label="Role Key" width="220">
-        <template slot-scope="scope">
+        <template v-slot="scope">
           {{ scope.row.key }}
         </template>
       </el-table-column>
       <el-table-column align="center" label="Role Name" width="220">
-        <template slot-scope="scope">
+        <template v-slot="scope">
           {{ scope.row.name }}
         </template>
       </el-table-column>
       <el-table-column align="header-center" label="Description">
-        <template slot-scope="scope">
+        <template v-slot="scope">
           {{ scope.row.description }}
         </template>
       </el-table-column>
       <el-table-column align="center" label="Operations">
-        <template slot-scope="scope">
+        <template v-slot="scope">
           <el-button type="primary" size="small" @click="handleEdit(scope)">Edit</el-button>
           <el-button type="danger" size="small" @click="handleDelete(scope)">Delete</el-button>
         </template>
