@@ -52,11 +52,16 @@
 </template>
 
 <script>
-import countTo from 'vue3-count-to'
+import { ref, onMounted } from 'vue';
+import countTo from '@/components/CountTo'
 
 export default {
   name: 'CountToDemo',
   components: { countTo },
+  setup(){
+    const example = ref(null);
+    return { example };
+  },
   data() {
     return {
       setStartVal: 0,
@@ -113,10 +118,10 @@ export default {
   },
   methods: {
     start() {
-      this.$refs.example.start()
+      this.example.start()
     },
     pauseResume() {
-      this.$refs.example.pauseResume()
+      this.example.pauseResume()
     }
   }
 }

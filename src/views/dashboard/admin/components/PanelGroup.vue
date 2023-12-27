@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import CountTo from 'vue3-count-to'
+import CountTo from '@/components/CountTo'
 
 
 export default {

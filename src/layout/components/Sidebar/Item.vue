@@ -18,8 +18,7 @@ export default {
 
   setup(props, context) {
     // const age = ref(123);
-    return () =>
-    {
+    return () =>{
        const { icon, title } = props
       //  console.log(`icon in setup:%0, title:%0`, icon, title)
        const vnodes = []
