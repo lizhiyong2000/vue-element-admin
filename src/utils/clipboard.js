@@ -1,8 +1,12 @@
-import * as Vue from 'vue'
 import Clipboard from 'clipboard'
 
+import { inject } from 'vue';
+
+
+
 function clipboardSuccess() {
-  Vue.prototype.$message({
+  // const $message = inject('$message');
+  console.log({
     message: 'Copy successfully',
     type: 'success',
     duration: 1500
@@ -10,7 +14,8 @@ function clipboardSuccess() {
 }
 
 function clipboardError() {
-  Vue.prototype.$message({
+  // const $message = inject('$message');
+  console.log({
     message: 'Copy failed',
     type: 'error'
   })

@@ -17,7 +17,7 @@
     <el-table :key="key" :data="tableData" border fit highlight-current-row style="width: 100%">
       <el-table-column prop="name" label="fruitName" width="180" />
       <el-table-column v-for="fruit in formThead" :key="fruit" :label="fruit">
-        <template slot-scope="scope">
+        <template v-slot="scope">
           {{ scope.row[fruit] }}
         </template>
       </el-table-column>

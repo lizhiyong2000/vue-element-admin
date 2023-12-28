@@ -37,7 +37,7 @@
           </template>
         </el-table-column>
         <el-table-column label="Stack">
-          <template slot-scope="scope">
+          <template v-slot="scope">
             {{ scope.row.err.stack }}
           </template>
         </el-table-column>

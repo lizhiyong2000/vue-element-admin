@@ -11,8 +11,18 @@
 
 <script>
 import {pathToRegexp} from 'path-to-regexp'
+import {useRoute, useRouter} from 'vue-router'
 
 export default {
+  setup() {
+    const router = useRouter()  
+    const route = useRoute()
+    return {
+      router,
+      route,
+    }
+
+  },
   data() {
     return {
       levelList: null
@@ -58,10 +68,10 @@ export default {
     handleLink(item) {
       const { redirect, path } = item
       if (redirect) {
-        this.$router.push(redirect)
+        this.router.push(redirect)
         return
       }
-      this.$router.push(this.pathCompile(path))
+      this.router.push(this.pathCompile(path))
     }
   }
 }

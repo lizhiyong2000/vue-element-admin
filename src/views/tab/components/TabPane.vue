@@ -55,6 +55,7 @@
 
 <script>
 import { fetchList } from '@/api/article'
+import { parseTime } from '@/utils'
 
 export default {
   filters: {

@@ -36,9 +36,18 @@
 
 <script>
 import errGif from '@/assets/401_images/401.gif'
+import {useRoute, useRouter} from 'vue-router'
 
 export default {
   name: 'Page401',
+  setup() {
+    const router = useRouter()  
+    const route = useRoute()
+    return {
+      router,
+      route,
+    }
+  },
   data() {
     return {
       errGif: errGif + '?' + +new Date(),
@@ -49,9 +58,9 @@ export default {
   methods: {
     back() {
       if (this.$route.query.noGoBack) {
-        this.$router.push({ path: '/dashboard' })
+        this.router.push({ path: '/dashboard' })
       } else {
-        this.$router.go(-1)
+        this.router.go(-1)
       }
     }
   }

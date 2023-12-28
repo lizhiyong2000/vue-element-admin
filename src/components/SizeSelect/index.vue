@@ -13,7 +13,17 @@
 </template>
 
 <script>
+import {useRoute, useRouter} from 'vue-router'
+
 export default {
+  setup() {
+    const router = useRouter()  
+    const route = useRoute()
+    return {
+      router,
+      route,
+    }
+  },
   data() {
     return {
       sizeOptions: [
@@ -46,7 +56,7 @@ export default {
       const { fullPath } = this.$route
 
       this.$nextTick(() => {
-        this.$router.replace({
+        this.router.replace({
           path: '/redirect' + fullPath
         })
       })

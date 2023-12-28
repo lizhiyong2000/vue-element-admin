@@ -6,7 +6,7 @@
         target="_blank"
       >json-lint</a>.</aside>
     <div class="editor-container">
-      <json-editor ref="jsonEditor" v-model="value" />
+      <json-editor ref="jsonEditor" :value="value" />
     </div>
   </div>
 </template>

@@ -233,7 +233,7 @@ export default {
     const lang = language[langType] ? language[langType] : language['en']
     const mime = mimes[tempImgFormat]
     // 规范图片格式
-    this.imgFormat = tempImgFormat
+    // this.imgFormat = tempImgFormat
     if (langExt) {
       Object.assign(lang, langExt)
     }

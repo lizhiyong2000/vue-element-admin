@@ -14,10 +14,19 @@
 
 <script>
 import TabPane from './components/TabPane'
+import {useRoute, useRouter} from 'vue-router'
 
 export default {
   name: 'Tab',
   components: { TabPane },
+  setup() {
+    const router = useRouter()  
+    const route = useRoute()
+    return {
+      router,
+      route,
+    }
+  },
   data() {
     return {
       tabMapOptions: [
@@ -32,7 +41,7 @@ export default {
   },
   watch: {
     activeName(val) {
-      this.$router.push(`${this.$route.path}?tab=${val}`)
+      this.router.push(`${this.$route.path}?tab=${val}`)
     }
   },
   created() {

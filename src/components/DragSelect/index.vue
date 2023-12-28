@@ -22,6 +22,13 @@ export default {
       required: true
     }
   },
+  data(){
+    return{
+      value: ['Apple', 'Banana', 'Orange'],
+    }
+    
+  },
+
   computed: {
     selectVal: {
       get() {

@@ -5,13 +5,16 @@
     </div>
     <draggable
       :list="list"
+      item-key="id"
       v-bind="$attrs"
       class="board-column-content"
       :set-data="setData"
     >
-      <div v-for="element in list" :key="element.id" class="board-item">
+    <template #item="{element}" >
+      <div class="board-item">
         {{ element.name }} {{ element.id }}
       </div>
+    </template>
     </draggable>
   </div>
 </template>

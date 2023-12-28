@@ -245,7 +245,7 @@ export default {
       // When there is only one child route, the child route is displayed by default
       if (showingChildren.length === 1) {
         onlyOneChild = showingChildren[0]
-        onlyOneChild.path = resolve(parent.path, onlyOneChild.path)
+        onlyOneChild.path = path.resolve(parent.path, onlyOneChild.path)
         return onlyOneChild
       }
 

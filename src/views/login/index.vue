@@ -83,10 +83,9 @@ export default {
   name: 'Login',
   components: { SocialSign }, 
   setup() {
-   const router = useRouter()  
-  //  console.log(`router in setup:${router}`);
+    const router = useRouter()  
     return {
-       router
+      router
     }
 
   },
@@ -170,7 +169,7 @@ export default {
           this.$store.dispatch('user/login', this.loginForm)
             .then(() => {
               console.log('success login %0!! ,path:${this.redirect}, query:%0', this.router.hasRoute('Dashboard'), this.redirect, this.router.getRoutes())
-              // this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
+              // this.router.push({ path: this.redirect || '/', query: this.otherQuery })
               
               this.router.replace('/dashboard')
               this.loading = false
@@ -204,7 +203,7 @@ export default {
     //     const codeName = code[type]
     //     if (codeName) {
     //       this.$store.dispatch('LoginByThirdparty', codeName).then(() => {
-    //         this.$router.push({ path: this.redirect || '/' })
+    //         this.router.push({ path: this.redirect || '/' })
     //       })
     //     } else {
     //       alert('第三方登录失败')

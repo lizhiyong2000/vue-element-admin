@@ -53,8 +53,17 @@ import ErrorLog from '@/components/ErrorLog'
 import Screenfull from '@/components/Screenfull'
 import SizeSelect from '@/components/SizeSelect'
 import Search from '@/components/HeaderSearch'
+import {useRoute, useRouter} from 'vue-router'
 
 export default {
+  setup() {
+    const router = useRouter()  
+    const route = useRoute()
+    return {
+      router,
+      route,
+    }
+  },
   components: {
     Breadcrumb,
     Hamburger,
@@ -76,7 +85,7 @@ export default {
     },
     async logout() {
       await this.$store.dispatch('user/logout')
-      this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+      this.router.push(`/login?redirect=${this.$route.fullPath}`)
     }
   }
 }

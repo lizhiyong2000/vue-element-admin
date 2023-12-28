@@ -5,11 +5,17 @@
 </template>
 
 <script>
+
+import { toRefs } from 'vue'
+
+
 import CodeMirror from 'codemirror'
 import 'codemirror/addon/lint/lint.css'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/theme/rubyblue.css'
 // require('script-loader!jsonlint')
+
+import jsonlint from 'jsonlint-mod';
 
 
 new URL('script-loader!jsonlint/lib/jsonlint.js', import.meta.url).href;
@@ -19,10 +25,21 @@ import 'codemirror/mode/javascript/javascript'
 import 'codemirror/addon/lint/lint'
 import 'codemirror/addon/lint/json-lint'
 
+window.jsonlint = jsonlint;
+
 export default {
   name: 'JsonEditor',
   /* eslint-disable vue/require-prop-types */
   props: ['value'],
+  setup(props){
+    console.log('JsonEditor setup, props:%0', props)
+      const {value} = toRefs(props)
+      // const formatText = `Hi,${text.value}`
+      return {
+          value
+      }
+  },
+
   data() {
     return {
       jsonEditor: false
@@ -31,8 +48,8 @@ export default {
   watch: {
     value(value) {
       const editorValue = this.jsonEditor.getValue()
-      if (value !== editorValue) {
-        this.jsonEditor.setValue(JSON.stringify(this.value, null, 2))
+      if (value &&value !== editorValue ) {
+        this.jsonEditor.setValue(JSON.stringify(value, null, 2))
       }
     }
   },
@@ -45,7 +62,11 @@ export default {
       lint: true
     })
 
-    this.jsonEditor.setValue(JSON.stringify(this.value, null, 2))
+    console.log('jsonEditor mounted, value:%0', this.value)
+    if this.value{
+      this.jsonEditor.setValue(JSON.stringify(this.value, null, 2))
+    }
+    
     this.jsonEditor.on('change', cm => {
       this.$emit('changed', cm.getValue())
       this.$emit('input', cm.getValue())

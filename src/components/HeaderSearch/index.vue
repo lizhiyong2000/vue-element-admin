@@ -22,9 +22,18 @@
 // make search results more in line with expectations
 import Fuse from 'fuse.js'
 import path from 'path-browserify'
+import {useRoute, useRouter} from 'vue-router'
 
 export default {
   name: 'HeaderSearch',
+  setup() {
+    const router = useRouter()  
+    const route = useRoute()
+    return {
+      router,
+      route,
+    }
+  },
   data() {
     return {
       search: '',
@@ -70,7 +79,7 @@ export default {
       this.show = false
     },
     change(val) {
-      this.$router.push(val.path)
+      this.router.push(val.path)
       this.search = ''
       this.options = []
       this.$nextTick(() => {

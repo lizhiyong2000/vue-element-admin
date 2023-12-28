@@ -31,6 +31,9 @@ import SvgIcon from '@/components/SvgIcon'// svg component
 
 import * as filters from './filters' // global filters
 import { mockXHR } from '../mock'
+import element from 'element-plus'
+import 'element-plus/dist/index.css'
+import {ElMessage} from 'element-plus'
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api
@@ -64,6 +67,14 @@ app.component('svg-icon', SvgIcon)
 
 app.use(router)
 app.use(store)
+app.use(element)
+
+
+//https://stackoverflow.com/questions/65184107/how-to-use-vue-prototype-or-global-variable-in-vue-3
+//如果没有全局引用element，还需写下面一句
+app.config.globalProperties.$message = ElMessage;
+
+app.provide('$message', ElMessage)
 
 app.config.globalProperties.$filters = filters
 
