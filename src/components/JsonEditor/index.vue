@@ -9,23 +9,33 @@
 import { toRefs } from 'vue'
 
 
-import CodeMirror from 'codemirror'
-import 'codemirror/addon/lint/lint.css'
-import 'codemirror/lib/codemirror.css'
-import 'codemirror/theme/rubyblue.css'
+import CodeMirror from 'vue-codemirror'
+import { EditorView, basicSetup} from "codemirror";
+import {EditorState, Compartment} from "@codemirror/state"
+import {javascript} from "@codemirror/lang-javascript"
+// import 'codemirror/addon/lint/lint.css'
+// import 'codemirror/lib/codemirror.css'
+// import 'codemirror/theme/rubyblue.css'
 // require('script-loader!jsonlint')
 
-import jsonlint from 'jsonlint-mod';
+// import jsonlint from 'jsonlint-mod';
 
 
-new URL('script-loader!jsonlint/lib/jsonlint.js', import.meta.url).href;
+// new URL('script-loader!jsonlint/lib/jsonlint.js', import.meta.url).href;
 
 
-import 'codemirror/mode/javascript/javascript'
-import 'codemirror/addon/lint/lint'
-import 'codemirror/addon/lint/json-lint'
+// import 'codemirror/mode/javascript/javascript'
+// import 'codemirror/addon/lint/lint'
+// import 'codemirror/addon/lint/json-lint'
 
-window.jsonlint = jsonlint;
+// window.jsonlint = jsonlint;
+
+function editorFromTextArea(textarea, extensions) {
+  let view = new EditorView({ doc: textarea.value, extensions })
+  textarea.parentNode.insertBefore(view.dom, textarea)
+  textarea.style.display = "none"
+  return view
+}
 
 export default {
   name: 'JsonEditor',
@@ -47,34 +57,38 @@ export default {
   },
   watch: {
     value(value) {
-      const editorValue = this.jsonEditor.getValue()
+      const editorValue = this.jsonEditor.state.doc.toString()
       if (value &&value !== editorValue ) {
-        this.jsonEditor.setValue(JSON.stringify(value, null, 2))
+        this.jsonEditor.state.doc = JSON.stringify(value, null, 2)
       }
     }
   },
   mounted() {
-    this.jsonEditor = CodeMirror.fromTextArea(this.$refs.textarea, {
-      lineNumbers: true,
-      mode: 'application/json',
-      gutters: ['CodeMirror-lint-markers'],
-      theme: 'rubyblue',
-      lint: true
-    })
+    let language = new Compartment, tabSize = new Compartment
+    let extensions =  [
+        basicSetup,
+        language.of(javascript()),
+        tabSize.of(EditorState.tabSize.of(8))
+      ]
+
+    this.jsonEditor = editorFromTextArea(this.$refs.textarea, extensions)
 
     console.log('jsonEditor mounted, value:%0', this.value)
-    if this.value{
-      this.jsonEditor.setValue(JSON.stringify(this.value, null, 2))
+    if(this.value){
+      this.jsonEditor.dispatch({
+        changes: {from: 0, to: this.jsonEditor.state.doc.length, insert: JSON.stringify(this.value, null, 2)}
+      })
+      // this.jsonEditor.state.doc = JSON.stringify(this.value, null, 2)
     }
-    
-    this.jsonEditor.on('change', cm => {
-      this.$emit('changed', cm.getValue())
-      this.$emit('input', cm.getValue())
-    })
+
+    // this.jsonEditor.on('change', cm => {
+    //   this.$emit('changed', cm.state.doc.toString())
+    //   this.$emit('input', cm.state.doc.toString())
+    // })
   },
   methods: {
     getValue() {
-      return this.jsonEditor.getValue()
+      return this.jsonEditor.state.doc.toString()
     }
   }
 }
@@ -85,19 +99,16 @@ export default {
   height: 100%;
   position: relative;
 
-  ::v-deep {
-    .CodeMirror {
-      height: auto;
-      min-height: 300px;
-    }
-
-    .CodeMirror-scroll {
-      min-height: 300px;
-    }
-
-    .cm-s-rubyblue span.cm-string {
-      color: #F08047;
-    }
+  :deep(.CodeMirror ){
+    height: auto;
+    min-height: 300px;
   }
+  :deep(.CodeMirror-scroll){
+    min-height: 300px;
+  }
+  :deep(.cm-s-rubyblue span.cm-string){
+    color: #F08047;
+  }
+
 }
 </style>

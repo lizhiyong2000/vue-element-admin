@@ -1,6 +1,6 @@
 <template>
   <div class="upload-container">
-    <el-button :style="{background:color,borderColor:color}" icon="el-icon-upload" size="mini" type="primary" @click=" dialogVisible=true">
+    <el-button :style="{background:color,borderColor:color}" icon="el-icon-upload" size="small" type="primary" @click=" dialogVisible=true">
       upload
     </el-button>
     <el-dialog :visible.sync="dialogVisible">
@@ -104,7 +104,7 @@ export default {
 <style lang="scss" scoped>
 .editor-slide-upload {
   margin-bottom: 20px;
-  ::v-deep .el-upload--picture-card {
+  :deep(.el-upload--picture-card) {
     width: 100%;
   }
 }

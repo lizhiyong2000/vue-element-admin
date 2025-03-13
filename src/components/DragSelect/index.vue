@@ -26,7 +26,7 @@ export default {
     return{
       value: ['Apple', 'Banana', 'Orange'],
     }
-    
+
   },
 
   computed: {
@@ -64,16 +64,16 @@ export default {
 
 <style lang="scss" scoped>
 .drag-select {
-  ::v-deep {
-    .sortable-ghost {
-      opacity: .8;
-      color: #fff !important;
-      background: #42b983 !important;
-    }
 
-    .el-tag {
-      cursor: pointer;
-    }
+  :deep(.sortable-ghost){
+    opacity: .8;
+    color: #fff !important;
+    background: #42b983 !important;
   }
+
+  :deep(.el-tag){
+    cursor: pointer;
+  }
+
 }
 </style>

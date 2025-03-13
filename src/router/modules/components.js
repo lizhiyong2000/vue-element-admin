@@ -26,7 +26,10 @@ const componentsRouter = {
     },
     {
       path: '/components/json-editor',
-      component: () => import('@/views/components-demo/json-editor'),
+      component: () => import('@/views/components-demo/json-editor').catch((error) => {
+        // 导入失败，处理错误
+        console.error('Failed to import module:', error);
+      }),
       name: 'JsonEditorDemo',
       meta: { title: 'JSON Editor' }
     },

@@ -4,7 +4,7 @@ import { h, ref } from "vue";
 
 export default {
   name: 'MenuItem',
-  functional: true,
+  // functional: true,
   props: {
     icon: {
       type: String,

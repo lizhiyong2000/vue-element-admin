@@ -217,10 +217,8 @@ export default {
 }
 
 .tinymce-container {
-  ::v-deep {
-    .mce-fullscreen {
+  :deep(.mce-fullscreen){
       z-index: 10000;
-    }
   }
 }
 

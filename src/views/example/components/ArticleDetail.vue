@@ -250,7 +250,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles/mixin.scss";
+@use "@/styles/mixin.scss" as *;
 
 .createPost-container {
   position: relative;
@@ -277,13 +277,11 @@ export default {
   }
 }
 
-.article-textarea ::v-deep {
-  textarea {
+.article-textarea :deep(textarea) {
     padding-right: 40px;
     resize: none;
     border: none;
     border-radius: 0px;
     border-bottom: 1px solid #bfcbd9;
-  }
 }
 </style>

@@ -45,7 +45,7 @@
 
     <el-table-column class-name="status-col" label="Status" width="110">
       <template v-slot="{row}">
-        <el-tag :type="row.status | statusFilter">
+        <el-tag :type="statusFilter(row.status)">
           {{ row.status }}
         </el-tag>
       </template>
@@ -58,16 +58,6 @@ import { fetchList } from '@/api/article'
 import { parseTime } from '@/utils'
 
 export default {
-  filters: {
-    statusFilter(status) {
-      const statusMap = {
-        published: 'success',
-        draft: 'info',
-        deleted: 'danger'
-      }
-      return statusMap[status]
-    }
-  },
   props: {
     type: {
       type: String,
@@ -95,6 +85,14 @@ export default {
     this.getList()
   },
   methods: {
+    statusFilter(status) {
+      const statusMap = {
+        published: 'success',
+        draft: 'info',
+        deleted: 'danger'
+      }
+      return statusMap[status]
+    },
     getList() {
       this.loading = true
       this.$emit('create') // for test

@@ -27,7 +27,7 @@
 
       <el-table-column class-name="status-col" label="Status" width="110">
         <template v-slot="{row}">
-          <el-tag :type="row.status | statusFilter">
+          <el-tag :type="statusFilter(row.status)">
             {{ row.status }}
           </el-tag>
         </template>
@@ -64,16 +64,7 @@ import { parseTime } from '@/utils'
 export default {
   name: 'ArticleList',
   components: { Pagination },
-  filters: {
-    statusFilter(status) {
-      const statusMap = {
-        published: 'success',
-        draft: 'info',
-        deleted: 'danger'
-      }
-      return statusMap[status]
-    }
-  },
+
   data() {
     return {
       list: null,
@@ -101,6 +92,14 @@ export default {
         this.total = response.data.total
         this.listLoading = false
       })
+    },
+    statusFilter(status) {
+      const statusMap = {
+        published: 'success',
+        draft: 'info',
+        deleted: 'danger'
+      }
+      return statusMap[status]
     }
   }
 }

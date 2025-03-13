@@ -42,18 +42,6 @@ import {toThousandFilter} from '@/filters'
 import { parseTime, formatTime } from '@/utils'
 
 export default {
-  // filters: {
-  //   statusFilter(status) {
-  //     const statusMap = {
-  //       success: 'success',
-  //       pending: 'danger'
-  //     }
-  //     return statusMap[status]
-  //   },
-  //   orderNoFilter(str) {
-  //     return str.substring(0, 30)
-  //   }
-  // },
   data() {
     return {
       list: null
@@ -94,7 +82,7 @@ export default {
       transactionList().then(response => {
         this.list = response.data.items
         // this.list = response.data.items.slice(0, 8)
-        
+
       })
     }
   }
